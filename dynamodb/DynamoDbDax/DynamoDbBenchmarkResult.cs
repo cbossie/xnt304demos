@@ -8,37 +8,59 @@ namespace DynamoDbDax;
 public class DynamoDbBenchmarkResult
 {
     public TestType BenchmarkType { get; init; }
-    public int OrderId { get; init; }
-    public int NumberOfRequests { get; set; }
+    public string Id { get; init; }
+    public int NumberOfRequests { get; set; } = -1;
     public double FirstRequestLength { get; set; }
     private double TotalTime { get; set; }
+
+    public double MinTime { get; set; } = double.MaxValue;
+    public double MaxTime { get; set; } = double.MinValue;
+    
     public double AverageRequestLength => TotalTime / NumberOfRequests;
 
-    public DynamoDbBenchmarkResult(TestType type, int orderId)
+    public DynamoDbBenchmarkResult(TestType type, string id)
     {
         BenchmarkType = type;
-        OrderId = orderId;
+        Id = id;
     }
 
 
     public void AddRequest(double time)
     {
-        if (NumberOfRequests == 0)
+        if (NumberOfRequests == -1)
         {
             FirstRequestLength = time;
         }
-        TotalTime += time;
+        else
+        {
+            if(time < MinTime)
+            {
+                MinTime = time;
+            }
+            if(time > MaxTime)
+            {
+                MaxTime = time;
+            }
+
+            TotalTime += time;
+        }
         NumberOfRequests++;
+
     }
 
     public override string ToString()
     {
         return $"""
+            --------------------------------------------
             Test Type:      {BenchmarkType}
-            Order Id:       {OrderId}
+            --------------------------------------------
+            Id:             {Id}
             Iterations:     {NumberOfRequests}
             First Length:   {FirstRequestLength}
             Average Length: {AverageRequestLength}
+            Min Time:       {MinTime}
+            Max Time:       {MaxTime}
+            --------------------------------------------
             """;
     }
 
@@ -46,4 +68,4 @@ public class DynamoDbBenchmarkResult
 }
 
 
-public enum TestType {  Dax, DynamoDB }
+public enum TestType {  DaxGet, DynamoDBGet, DaxScan, DynamoDbScan }

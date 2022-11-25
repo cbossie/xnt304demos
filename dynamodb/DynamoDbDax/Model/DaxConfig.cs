@@ -13,5 +13,8 @@ namespace DynamoDbDax.Model
         public int StartingOrderId { get; set; }
         public int EndingOrderId { get; set; }
         public int Iterations { get; set; }
+        public string Character { get; set; }
+        public int ScanIterations { get; set; }
+
     }
 }

@@ -42,16 +42,37 @@ var host =
 
 // Get parameters (order ID and iterations)
 var config = host.Services.GetRequiredService<DaxConfig>();
-int orderId = rnd.Next(config.StartingOrderId, config.EndingOrderId);
+string orderId = rnd.Next(config.StartingOrderId, config.EndingOrderId).ToString();
 int iterations = config.Iterations;
 
-// Run Benchmark for Regular DynamoDB
-Console.WriteLine($"Starting DynamoDB Test for Order: {orderId} --- {iterations} iterations.");
+// Get Clients
+var daxClient = host.Services.GetRequiredService<ClusterDaxClient>();
 var dynamoDBClient = host.Services.GetRequiredService<IAmazonDynamoDB>();
-var result = await DynamoDbBenchmark.BenchmarkRequests(dynamoDBClient, TestType.DynamoDB, config.TableName, orderId, iterations);
 
 
-Console.WriteLine(result);
+// Single Get Tests
+Console.WriteLine($"Starting DynamoDB Test for Order: {orderId} --- {iterations} iterations.");
+var dynamoDBresult = await DynamoDbBenchmark.BenchmarkRequestsGet(dynamoDBClient, TestType.DynamoDBGet, config.TableName, orderId, iterations);
+Console.WriteLine();
+Console.WriteLine(dynamoDBresult);
+
+Console.WriteLine($"Starting DAX Test for Order: {orderId} --- {iterations} iterations.");
+var daxGetresult = await DynamoDbBenchmark.BenchmarkRequestsGet(daxClient, TestType.DaxGet, config.TableName, orderId, iterations);
+Console.WriteLine();
+Console.WriteLine(daxGetresult);
+
+
+// Table Scan Tests
+Console.WriteLine($"Starting DynamoDB Test for Scan: {config.Character} --- {config.ScanIterations} iterations.");
+var dynamoDbScanResult = await DynamoDbBenchmark.BenchmarkRequestsScan(dynamoDBClient, TestType.DynamoDbScan, config.TableName, config.Character, config.ScanIterations);
+Console.WriteLine();
+Console.WriteLine(dynamoDbScanResult);
+
+Console.WriteLine($"Starting DAX Test for Scan: {config.Character} --- {config.ScanIterations} iterations.");
+var daxScanresult = await DynamoDbBenchmark.BenchmarkRequestsScan(daxClient, TestType.DaxScan, config.TableName, config.Character, config.ScanIterations);
+Console.WriteLine();
+Console.WriteLine(daxScanresult);
+
 
 
 
