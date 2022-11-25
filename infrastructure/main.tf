@@ -33,11 +33,10 @@ resource "aws_security_group" "default_security_group" {
   vpc_id      = var.curr_vpc
 
   ingress {
-    from_port   = 0
-    to_port     = 0
-    protocol    = "tcp"
-    cidr_blocks = data.aws_vpc.curr_vpc.cidr_block_associations[*].cidr_block
-
+    from_port       = 0
+    to_port         = 0
+    protocol        = "-1"
+    security_groups = [data.aws_security_group.default_sg.id]
   }
 
   egress {
@@ -48,6 +47,18 @@ resource "aws_security_group" "default_security_group" {
     ipv6_cidr_blocks = ["::/0"]
   }
 }
+
+resource "aws_security_group_rule" "allow_from_self" {
+  type                     = "ingress"
+  from_port                = 0
+  to_port                  = 0
+  protocol                 = "-1"
+  security_group_id        = aws_security_group.default_security_group.id
+  source_security_group_id = aws_security_group.default_security_group.id
+  depends_on               = [aws_security_group.default_security_group]
+}
+
+
 
 #MemoryDB
 resource "aws_memorydb_subnet_group" "reinventsubnetgroup" {
@@ -87,6 +98,11 @@ resource "aws_dynamodb_table" "orders" {
     type = "N"
   }
 
+  attribute {
+    name = "Total"
+    type = "N"
+  }
+
   global_secondary_index {
     name               = "CustomerIdYear"
     hash_key           = "CustomerId"
@@ -94,6 +110,14 @@ resource "aws_dynamodb_table" "orders" {
     projection_type    = "INCLUDE"
     non_key_attributes = ["Id"]
   }
+
+  global_secondary_index {
+    name               = "TotalIndex"
+    hash_key           = "Total"
+    projection_type    = "INCLUDE"
+    non_key_attributes = ["Id", "CustomerId"]
+  }
+
 }
 
 #Dax
@@ -160,7 +184,21 @@ resource "aws_dax_cluster" "orders_dax_cluster" {
   node_type          = "dax.t3.medium"
   replication_factor = 4
   security_group_ids = [aws_security_group.default_security_group.id]
-  subnet_group_name = aws_dax_subnet_group.orders_dax.name
+  subnet_group_name  = aws_dax_subnet_group.orders_dax.name
+}
+
+
+
+#DynamoDB Table - Character
+resource "aws_dynamodb_table" "characters" {
+  name         = "Characters"
+  billing_mode = "PAY_PER_REQUEST"
+  hash_key     = "Name"
+
+  attribute {
+    name = "Name"
+    type = "S"
+  }
 }
 
 
