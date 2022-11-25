@@ -1,0 +1,41 @@
+DynamoDBCrud
+----------------------------
+Basics:
+Add Nuget Packages - 
+- AWSSDK.DynamoDBV2
+
+- AWSSDK.Extensions.NETCore.Setup
+
+
+Low Level API
+1) Show that we create a request object
+
+2) Set the table name and either key or item attribute
+(There are other attributes you can set)
+
+3) Create a request object
+
+4) Make a call to the API
+
+5a) Object Persistence
+
+Get - Show how easy it is to load it up
+Show character class, to show how we can map properties
+
+Set - Show how easy it is... just set the properties.
+
+5b) Low Level
+Get - Show the more traditional way. Point out how we need to Use the "S"/"N"/"SS" properties on the attributes
+
+Put - Show how we construct an item via the low level API
+
+
+
+
+
+
+
+
+
+
+

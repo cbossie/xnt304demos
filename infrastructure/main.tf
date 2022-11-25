@@ -77,7 +77,7 @@ resource "aws_memorydb_cluster" "reinvent_memdb" {
 }
 
 
-#DynamoDB Table - Oreder
+#DynamoDB Table - Order
 resource "aws_dynamodb_table" "orders" {
   name         = "Orders"
   billing_mode = "PAY_PER_REQUEST"
