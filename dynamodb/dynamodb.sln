@@ -5,6 +5,8 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DynamoDbCrud", "DynamoDbCrud\DynamoDbCrud.csproj", "{1000B157-C0C9-4D60-9D20-31DB6F6A5FE9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DynamoDbDax", "DynamoDbDax\DynamoDbDax.csproj", "{EA4BD470-EF8C-41CF-ABA9-6F2B35023035}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +20,9 @@ Global
 		{1000B157-C0C9-4D60-9D20-31DB6F6A5FE9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1000B157-C0C9-4D60-9D20-31DB6F6A5FE9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1000B157-C0C9-4D60-9D20-31DB6F6A5FE9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EA4BD470-EF8C-41CF-ABA9-6F2B35023035}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EA4BD470-EF8C-41CF-ABA9-6F2B35023035}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EA4BD470-EF8C-41CF-ABA9-6F2B35023035}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EA4BD470-EF8C-41CF-ABA9-6F2B35023035}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

@@ -25,14 +25,9 @@ IConfiguration cfg = host.Services.GetRequiredService<IConfiguration>();
 IDynamoDBCrud? crudObject;
 bool continueWork = true;
 
-
-
 while (continueWork)
 {
-
-
     // Pick the model
-
     do
     {
         Console.WriteLine("Do you want to use the (l)ow level or (o)bject persistence model?");
