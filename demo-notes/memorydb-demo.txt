@@ -5,7 +5,61 @@ Project: memorydb/MemoryDbAspNet
 Overview:
 This project scans the DynamoDB Orders Table, and retrieves the sum of all totals.
 
-It takes about..... seconds
+It takes about 30 seconds
+
+Steps to add caching
+
+1) Add
+microsoft.Extensions.Caching.StackExchangeRedis
+
+(dotnet add package microsoft.Extensions.Caching.StackExchangeRedis)
+
+2) Program.cs
+builder.Services.AddStackExchangeRedisCache(options =>
+{
+    options.Configuration = "localhost:6379";
+    options.InstanceName = "ReInventSample_";
+});
+
+3) Index.cshtml.cs
+
+--Add:
+private readonly IDistributedCache _cache;
+
+--Inject in constructor
+IDistributedCache cache / _cache = cache;
+
+-- Replace OnGetDataAsync
+public async Task OnGetDataAsync(string q)
+    {
+        OrderServiceTotalResult result;
+
+        // Retrieve the data for the display
+        ServiceTimer.Start();
+
+        //Updated cache retrieval logic
+        var cachedData = await _cache.GetStringAsync(q);
+        if(cachedData is null)
+        {
+            result = await _svc.GetOrdersForCustomerId(q);
+            await _cache.SetStringAsync(q, JsonSerializer.Serialize(result),
+                new DistributedCacheEntryOptions { SlidingExpiration = TimeSpan.FromSeconds(15)}
+                );
+        }
+        else
+        {
+            result = JsonSerializer.Deserialize<OrderServiceTotalResult>(cachedData);
+        }
+
+        // Populate Page Data
+        TotalCost = result.TotalCost;
+        NumOrders = result.NumOrders;
+        FirstLettter = q;
+        IsPopulated = true;
+        ServiceTimer.Stop();
+    }
+
+
 
 
 

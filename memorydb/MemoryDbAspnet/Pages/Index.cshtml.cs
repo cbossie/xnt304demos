@@ -26,15 +26,15 @@ public class IndexModel : PageModel
 
     public async Task OnGetDataAsync(string q)
     {
+        OrderServiceTotalResult result;
+
         // Retrieve the data for the display
         ServiceTimer.Start();
 
-        var data = await _svc.GetOrdersForCustomerId(q);
+        result = await _svc.GetOrdersForCustomerId(q);
 
-
-
-        TotalCost = data.TotalCost;
-        NumOrders = data.NumOrders;
+        TotalCost = result.TotalCost;
+        NumOrders = result.NumOrders;
 
         FirstLettter = q;
         IsPopulated = true;
