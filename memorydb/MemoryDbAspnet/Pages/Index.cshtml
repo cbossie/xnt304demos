@@ -1,0 +1,71 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+
+<p>
+    Select the first letter of customer ID
+</p>
+<div class="d-grid gap-2 d-md-block">
+
+    <a class="btn btn-primary" asp-route-q="0" asp-page-handler="data" as role="button">0</a>
+    <a class="btn btn-primary" asp-route-q="1" asp-page-handler="data" as role="button">1</a>
+    <a class="btn btn-primary" asp-route-q="2" asp-page-handler="data" as role="button">2</a>
+    <a class="btn btn-primary" asp-route-q="3" asp-page-handler="data" as role="button">3</a>
+    <a class="btn btn-primary" asp-route-q="4" asp-page-handler="data" as role="button">4</a>
+    <a class="btn btn-primary" asp-route-q="5" asp-page-handler="data" as role="button">5</a>
+    <a class="btn btn-primary" asp-route-q="6" asp-page-handler="data" as role="button">6</a>
+    <a class="btn btn-primary" asp-route-q="7" asp-page-handler="data" as role="button">7</a>
+    <a class="btn btn-primary" asp-route-q="8" asp-page-handler="data" as role="button">8</a>
+    <a class="btn btn-primary" asp-route-q="9" asp-page-handler="data" as role="button">9</a>
+    <a class="btn btn-primary" asp-route-q="a" asp-page-handler="data" as role="button">a</a>
+    <a class="btn btn-primary" asp-route-q="b" asp-page-handler="data" as role="button">b</a>
+    <a class="btn btn-primary" asp-route-q="c" asp-page-handler="data" as role="button">c</a>
+    <a class="btn btn-primary" asp-route-q="d" asp-page-handler="data" as role="button">d</a>
+    <a class="btn btn-primary" asp-route-q="e" asp-page-handler="data" as role="button">e</a>
+    <a class="btn btn-primary" asp-route-q="f" asp-page-handler="data" as role="button">f</a>
+
+
+
+</div>
+
+@if (!Model.IsPopulated)
+{
+    <div class="row pt-3">
+        <strong class="text-primary">Select a character above, to query all records where the customer ID matches that first letter</strong>
+    </div>
+}
+else
+{
+    <div class="row col-6 pt-3">
+        <strong class="text-success">Order Data Results</strong>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Letter</th>
+                    <th scope="col">Orders</th>
+                    <th scope="col">Total Cost</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td scope="row">@Model.FirstLettter</td>
+                    <td scope="row">@Model.NumOrders</td>
+                    <td scope="row">@string.Format("{0:C}", Model.TotalCost)</td>
+                </tr>
+            </tbody>
+
+        </table>
+        </div>
+        <div>
+        <hr />
+        <p>
+            It took <strong>@Model.ServiceTimer.ElapsedMilliseconds</strong> milliseconds to retrieve data.
+        </p>
+
+
+    </div>
+}

@@ -1,0 +1,26 @@
+Demo Notes for MemoryDB
+
+Project: memorydb/MemoryDbAspNet
+
+Overview:
+This project scans the DynamoDB Orders Table, and retrieves the sum of all totals.
+
+It takes about..... seconds
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
