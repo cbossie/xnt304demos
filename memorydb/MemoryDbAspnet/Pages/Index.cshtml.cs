@@ -33,9 +33,9 @@ public class IndexModel : PageModel
 
         result = await _svc.GetOrdersForCustomerId(q);
 
+        // Populate Page Data
         TotalCost = result.TotalCost;
         NumOrders = result.NumOrders;
-
         FirstLettter = q;
         IsPopulated = true;
         ServiceTimer.Stop();
