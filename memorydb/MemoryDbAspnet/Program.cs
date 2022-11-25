@@ -22,7 +22,12 @@ builder.Services.AddAWSService<IAmazonDynamoDB>();
 builder.Services.AddTransient<IOrderService, OrderService>();
 
 
-
+builder.Services.AddStackExchangeRedisCache(options =>
+{
+    options.Configuration = "clustercfg.reinvent-cluster.epiofo.memorydb.us-east-1.amazonaws.com:6379,ssl=true";
+    options.InstanceName = "ReInventSample_";
+    
+});
 
 
 
