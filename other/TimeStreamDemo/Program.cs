@@ -34,13 +34,7 @@ static async Task MainAsync(string kmsKeyId, string csvFilePath)
     var queryClient = new AmazonTimestreamQueryClient();
     var queryExample = new QueryExample(queryClient);
 
-    //await crudAndSimpleIngestionExample.CreateDatabase();
-    //await crudAndSimpleIngestionExample.DescribeDatabase();
-    //await crudAndSimpleIngestionExample.ListDatabases();
-    //if (kmsKeyId != null)
-    //{
-    //    await crudAndSimpleIngestionExample.UpdateDatabase(kmsKeyId);
-    //}
+
 
     await crudAndSimpleIngestionExample.CreateTable();
     await crudAndSimpleIngestionExample.DescribeTable();

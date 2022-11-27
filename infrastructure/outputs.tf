@@ -44,7 +44,10 @@ output "neptune_endpoint" {
   value       = aws_neptune_cluster.neptune_cluster.endpoint
 }
 
-
+output "elasticache_endpoints" {
+  description = "Elassticache cluster endpoint"
+  value       = aws_elasticache_cluster.reinvent_elasticache.cache_nodes
+}
 
 
 
