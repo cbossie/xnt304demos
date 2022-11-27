@@ -1,8 +1,10 @@
 DynamoDB DAX Demo Notes
 -----------------------------------------------------
 Explain what is going on
+1) Show how we inject both the DAX client and the DynamoDB client
+into the DI container
 
-1) We havea a DynamoDB table with orders between 1000000 and 1551001
+2) We havea a DynamoDB table with orders between 1000000 and 1551001
 
 When we run thae application, we choose randomly one order, and we retrieve it 1000 times.
 First we use the code to use dynamodDB. It will retrieve it and show some statistics.
