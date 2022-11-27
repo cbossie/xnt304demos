@@ -1,0 +1,16 @@
+DynamoDB DAX Demo Notes
+-----------------------------------------------------
+Explain what is going on
+
+1) We havea a DynamoDB table with orders between 1000000 and 1551001
+
+When we run thae application, we choose randomly one order, and we retrieve it 1000 times.
+First we use the code to use dynamodDB. It will retrieve it and show some statistics.
+Then we use the exact same code, but with a dax cluster instead.
+
+Explain that we will look at the first few characters of the customer ID and do a scan.
+When we run it, the first run will be slow, but then it will be super fast after.
+
+Compare results
+Plain Get - about 1/4 to 1/5 the time
+Scan - like 1/30th the time
