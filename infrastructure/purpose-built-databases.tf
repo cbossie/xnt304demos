@@ -80,7 +80,6 @@ resource "aws_elasticache_cluster" "reinvent_elasticache" {
   security_group_ids = [aws_security_group.default_security_group.id]
   apply_immediately  = true
   subnet_group_name  = aws_elasticache_subnet_group.reinvent_ec_group.name
-
 }
 
 resource "aws_elasticache_subnet_group" "reinvent_ec_group" {
