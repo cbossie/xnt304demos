@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "TimeStreamDemo": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "AWS_PROFILE": "reinvent"
+      }
+    }
+  }
+}
