@@ -49,13 +49,13 @@ resource "aws_security_group" "default_security_group" {
 }
 
 resource "aws_security_group_rule" "allow_from_local_cidr" {
-  type                     = "ingress"
-  from_port                = 0
-  to_port                  = 0
-  protocol                 = "-1"
-  security_group_id        = aws_security_group.default_security_group.id
-  cidr_blocks = data.aws_vpc.curr_vpc.cidr_block_associations[*].cidr_block
-  depends_on               = [aws_security_group.default_security_group]
+  type              = "ingress"
+  from_port         = 0
+  to_port           = 0
+  protocol          = "-1"
+  security_group_id = aws_security_group.default_security_group.id
+  cidr_blocks       = data.aws_vpc.curr_vpc.cidr_block_associations[*].cidr_block
+  depends_on        = [aws_security_group.default_security_group]
 }
 
 resource "aws_security_group_rule" "allow_from_self" {

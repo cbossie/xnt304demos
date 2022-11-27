@@ -24,13 +24,25 @@ output "dax_port" {
   value       = aws_dax_cluster.orders_dax_cluster.port
 }
 
+output "qldb_id" {
+  description = "The QLDB database created for this application"
+  value       = aws_qldb_ledger.qldb.id
+}
 
+output "timestream_id" {
+  description = "Timestream Database"
+  value       = aws_timestreamwrite_database.reinvent_timestream.id
+}
 
+output "docdb_endpoint" {
+  description = "Document DB endpoint"
+  value       = aws_docdb_cluster.docdb_cluster.endpoint
+}
 
-
-
-
-
+output "neptune_endpoint" {
+  description = "Neptune Endpoint"
+  value       = aws_neptune_cluster.neptune_cluster.endpoint
+}
 
 
 
