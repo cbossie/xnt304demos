@@ -20,7 +20,7 @@ IAsyncQldbDriver driver = AsyncQldbDriver.Builder()
     .WithSerializer(new ObjectSerializer())
     .Build();
 
-
+// Name to use in this run
 string randomName = $"John-{Guid.NewGuid()}";
 
 /**
@@ -51,7 +51,7 @@ Console.WriteLine("Inserting a document");
 Person myPerson = new Person {
     FirstName = randomName,
     LastName = "Doe",
-    Age = 32
+    Age = 1
 };
 
 await driver.Execute(async txn =>
