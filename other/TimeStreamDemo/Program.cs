@@ -18,24 +18,24 @@ Parser.Default.ParseArguments<Options>(args)
 
 static async Task MainAsync(string kmsKeyId, string csvFilePath)
 {
-    // Recommended Timestream write client SDK configuration:
-    // - Set SDK retry count to 10
-    // - Set RequestTimeout to 20 seconds
+
+    // Create the TimeStream  Client Configuration and RW clients
     var writeClientConfig = new AmazonTimestreamWriteConfig
     {
         Timeout = TimeSpan.FromSeconds(20),
         MaxErrorRetry = 10,         
     };
-
     var writeClient = new AmazonTimestreamWriteClient(writeClientConfig);
-    var crudAndSimpleIngestionExample = new CrudAndSimpleIngestionExample(writeClient);
-    var csvIngestionExample = new CsvIngestionExample(writeClient);
-
     var queryClient = new AmazonTimestreamQueryClient();
+
+
+
+    // Create Example Classes for CRUD operations
+    var crudAndSimpleIngestionExample = new CrudAndSimpleIngestionExample(writeClient);
     var queryExample = new QueryExample(queryClient);
 
 
-
+    // CRUD simple ingestion
     await crudAndSimpleIngestionExample.CreateTable();
     await crudAndSimpleIngestionExample.DescribeTable();
     await crudAndSimpleIngestionExample.ListTables();
@@ -48,16 +48,10 @@ static async Task MainAsync(string kmsKeyId, string csvFilePath)
     // upsert records
     await crudAndSimpleIngestionExample.WriteRecordsWithUpsert();
 
-    if (csvFilePath != null)
-    {
-        // Bulk record ingestion for bootstrapping a table with fresh data
-        await csvIngestionExample.BulkWriteRecords(csvFilePath);
-    }
-
     await queryExample.RunAllQueries();
 
-    // Try cancelling query
-    await queryExample.CancelQuery();
+    //// Try cancelling query
+    //await queryExample.CancelQuery();
 
     // Run query with multiple pages
     await queryExample.RunQueryWithMultiplePages(20000);

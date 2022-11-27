@@ -1,0 +1,42 @@
+Quantum Ledger Database Demo
+
+Program.cs
+1) Show how we initialize the driver (IAsyncQldbDriver)
+
+2) Show how we just use a POCO obect (person)
+The POC object is handled by Serializer. 
+You can also use something called Amazon Ion to store data directly
+without needing to serialize to POCO.
+
+3) Our process
+a- Create a random name based on a predefined prefix
+b- Show the crud operations
+INSERT
+QUERY
+UPDATE
+QUERY
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
