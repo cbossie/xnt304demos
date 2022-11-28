@@ -48,9 +48,19 @@ resource "aws_dynamodb_table" "characters" {
   name         = "Characters"
   billing_mode = "PAY_PER_REQUEST"
   hash_key     = "Name"
-
+  stream_enabled   = true
+  stream_view_type = "NEW_AND_OLD_IMAGES"
   attribute {
     name = "Name"
     type = "S"
   }
+  replica {
+    region_name = "eu-west-1"
+  }
+}
+
+#Global Table
+resource "aws_dynamodb_table_replica" "characters_euwest" {
+  provider = aws.euwest
+  global_table_arn = aws_dynamodb_table.characters.arn
 }

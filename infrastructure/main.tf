@@ -25,6 +25,18 @@ provider "aws" {
   }
 }
 
+# Provider for our global table
+provider "aws" {
+  region  = "eu-west-1"
+  profile = "reinvent"
+  alias = "euwest"
+  default_tags {
+    tags = {
+      Environment = "Prod"
+      System      = "ReInvent 2022"
+    }
+  }
+}
 
 #VPC and Networking
 resource "aws_security_group" "default_security_group" {

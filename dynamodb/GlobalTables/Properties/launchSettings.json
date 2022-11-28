@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "GlobalTables": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "AWS_PROFILE": "reinvent"
+      }
+    }
+  }
+}

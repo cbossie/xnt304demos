@@ -1,5 +1,8 @@
 DynamoDB DAX Demo Notes
 -----------------------------------------------------
+Run Demo First - Explain the statistic
+
+
 Explain what is going on
 1) Show how we inject both the DAX client and the DynamoDB client
 into the DI container

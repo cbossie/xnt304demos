@@ -1,5 +1,6 @@
 Demo Notes for MemoryDB
 
+
 Project: memorydb/MemoryDbAspNet
 
 Overview:
@@ -17,6 +18,10 @@ microsoft.Extensions.Caching.StackExchangeRedis
 2) Program.cs
 builder.Services.AddStackExchangeRedisCache(options =>
 {
+    // Elasticache
+    //options.Configuration = "reinvent-cluster.epiofo.0001.use1.cache.amazonaws.com:6379";
+
+    // MemoryDB
     options.Configuration = "clustercfg.reinvent-cluster.epiofo.memorydb.us-east-1.amazonaws.com:6379,ssl=true";
     options.InstanceName = "ReInventSample_";
 });

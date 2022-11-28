@@ -1,5 +1,8 @@
 DynamoDBCrud
 ----------------------------
+Show the console
+
+
 Basics:
 Add Nuget Packages - 
 - AWSSDK.DynamoDBV2
