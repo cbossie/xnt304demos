@@ -1,6 +1,7 @@
 DynamoDB DAX Demo Notes
 -----------------------------------------------------
-Run Demo First - Explain the statistic
+
+Run Demo First - Explain the statistic - UPDATE the confiug file 
 
 
 Explain what is going on
