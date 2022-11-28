@@ -105,7 +105,7 @@ while (continueWork)
     }
 
     Console.WriteLine("Do you want to go again?");
-    continueWork = (Console.ReadLine())?.Substring(0,1)?.ToUpper() == "Y";
+    continueWork = (Console.ReadLine()).PadRight(1)?.Substring(0,1)?.ToUpper() == "Y";
 }
 
 Console.WriteLine("Done!");
