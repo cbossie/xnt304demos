@@ -1,0 +1,17 @@
+REDIS
+- MemoryDB implementation
+- Elasticache Implementation Also
+
+DynamoDB
+- CRUD OPERATIONS
+    - Object Persistence
+    - Low Level
+- DAX
+    - Show code structure
+    - Show performance gain
+
+QLDB
+- Show code structure and test
+
+Timestream
+- Show code structure and test
