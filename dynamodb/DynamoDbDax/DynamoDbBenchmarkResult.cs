@@ -54,12 +54,12 @@ public class DynamoDbBenchmarkResult
             --------------------------------------------
             Test Type:      {BenchmarkType}
             --------------------------------------------
-            Id:             {Id}
-            Iterations:     {NumberOfRequests}
-            First Length:   {FirstRequestLength}
-            Average Length: {AverageRequestLength}
-            Min Time:       {MinTime}
-            Max Time:       {MaxTime}
+            Id:               {Id}
+            Iterations:       {NumberOfRequests}
+            First Duration:   {FirstRequestLength}
+            Average Duration: {AverageRequestLength}
+            Min Time:         {MinTime}
+            Max Time:         {MaxTime}
             --------------------------------------------
             """;
     }

@@ -49,19 +49,23 @@ int iterations = config.Iterations;
 var daxClient = host.Services.GetRequiredService<ClusterDaxClient>();
 var dynamoDBClient = host.Services.GetRequiredService<IAmazonDynamoDB>();
 
-
+Console.WriteLine("--------------------------------");
+Console.WriteLine("-Get single item test-----------");
+Console.WriteLine("--------------------------------");
 // Single Get Tests
-Console.WriteLine($"Starting DynamoDB Test for Order: {orderId} --- {iterations} iterations.");
+Console.WriteLine($"DynamoDB Test for Order: {orderId} --- {iterations} iterations.");
 var dynamoDBresult = await DynamoDbBenchmark.BenchmarkRequestsGet(dynamoDBClient, TestType.DynamoDBGet, config.TableName, orderId, iterations);
 Console.WriteLine();
 Console.WriteLine(dynamoDBresult);
 
-Console.WriteLine($"Starting DAX Test for Order: {orderId} --- {iterations} iterations.");
+Console.WriteLine($" DAX Test for Order: {orderId} --- {iterations} iterations.");
 var daxGetresult = await DynamoDbBenchmark.BenchmarkRequestsGet(daxClient, TestType.DaxGet, config.TableName, orderId, iterations);
 Console.WriteLine();
 Console.WriteLine(daxGetresult);
 
-
+Console.WriteLine("--------------------------------");
+Console.WriteLine("-Table scan test-----------");
+Console.WriteLine("--------------------------------");
 // Table Scan Tests
 Console.WriteLine($"Starting DynamoDB Test for Scan: {config.Character} --- {config.ScanIterations} iterations.");
 var dynamoDbScanResult = await DynamoDbBenchmark.BenchmarkRequestsScan(dynamoDBClient, TestType.DynamoDbScan, config.TableName, config.Character, config.ScanIterations);

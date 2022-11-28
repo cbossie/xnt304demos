@@ -46,9 +46,10 @@ catch (BadRequestException ex)
 
 **/
 Console.WriteLine("Inserting a re:Invent Session");
-Session mySession = new Session {
+Session mySession = new Session
+{
     SessionName = randomName,
-    Venue  = startingVenue,
+    Venue = startingVenue,
     Duration = 15
 };
 
