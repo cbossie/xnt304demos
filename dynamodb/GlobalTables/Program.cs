@@ -27,7 +27,7 @@ Character chr = new Character
 Console.WriteLine("Saving the following Character:");
 Console.WriteLine(chr);
 
-await useast1Context.SaveAsync(chr);
+await euwest1Context.SaveAsync(chr);
 chr.SerialNumber = newSerial;
 
 Console.WriteLine($"{Environment.NewLine}{Environment.NewLine}");
@@ -36,11 +36,11 @@ Console.WriteLine($"Will update the serial number, then query the global table e
 Console.WriteLine("Beginning Process");
 Console.WriteLine($"Old Serial Number = {oldSerial}");
 Character charEurope;
-await useast1Context.SaveAsync(chr);
+await euwest1Context.SaveAsync(chr);
 do
 {    
     await Task.Delay(msSteps);
-    charEurope = await euwest1Context.LoadAsync<Character>(chr.Name);
+    charEurope = await useast1Context.LoadAsync<Character>(chr.Name);
 
     elapsed += msSteps;
 
