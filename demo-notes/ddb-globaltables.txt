@@ -2,6 +2,6 @@ Global Tables Demo
 
 1) Show the replicas in the AWS console
 
-2) Run the program - basically it's too fast to get an accurate read
+2) Run the program - Show that you can create and update in under a second
 
-Code - Show that 
+Code - Show what we are doing
