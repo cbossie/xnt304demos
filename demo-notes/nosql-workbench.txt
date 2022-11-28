@@ -1,0 +1,25 @@
+1) Simple Query
+
+SELECT * FROM Orders Where Id BETWEEN ? AND ?
+
+Param 1 = 1382583
+Param 2 = 1482683
+
+
+
+2) More Complicated
+SELECT 
+	* 
+FROM 
+	Orders
+WHERE 
+	Begins_with(CustomerId, ?)
+
+
+Param1 = 'bb'
+
+
+
+
+
+
